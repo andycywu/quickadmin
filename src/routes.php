@@ -23,6 +23,11 @@ if (Schema::hasTable('menus')) {
                             'as'   => config('quickadmin.route') . '.' . strtolower($menu->name) . '.massDelete',
                             'uses' => 'Admin\\' . ucfirst(camel_case($menu->name)) . 'Controller@massDelete'
                         ]);
+                        // Andycy add for massUpdate function 2016/4/21
+                        Route::post(strtolower($menu->name) . '/massUpdate', [
+                            'as'   => config('quickadmin.route') . '.' . strtolower($menu->name) . '.massUpdate',
+                            'uses' => 'Admin\\' . ucfirst(camel_case($menu->name)) . 'Controller@massUpdate'
+                        ]);
                         Route::resource(strtolower($menu->name),
                             'Admin\\' . ucfirst(camel_case($menu->name)) . 'Controller', ['except' => 'show']);
                         break;
